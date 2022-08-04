@@ -19,7 +19,7 @@ public class CartController {
 
 	@Autowired
 	private CartService cartSvc;
-	
+
 	@PostMapping
 	public String postCart(@RequestBody MultiValueMap<String, String> form
 				, Model model) {
@@ -32,9 +32,9 @@ public class CartController {
 		List<String> cart = new LinkedList<>();
 		if (!isNull(c))
 			cart = cartSvc.deserialize(c);
-		
+
 		String item = form.getFirst("item");
-		if (isNull("item"))
+		if (!isNull(item)) 
 			cart.add(item);
 
 		model.addAttribute("displayName", name.toUpperCase());
@@ -45,7 +45,7 @@ public class CartController {
 
 		return "cart";
 	}
-	
+
 	private boolean isNull(String s) {
 		return ((null == s) || s.trim().length() <= 0);
 	}
