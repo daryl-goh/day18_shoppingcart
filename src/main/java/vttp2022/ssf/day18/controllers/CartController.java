@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(path="/cart")
 public class CartController {
 
+	@Autowired
+	private Cart
 	@PostMapping
 	public String postCart(@RequestBody MultiValueMap<String, String> form
 				, Model model) {
